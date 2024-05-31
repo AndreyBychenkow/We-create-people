@@ -1,0 +1,2 @@
+Faker 25.3.0
+file_operations
