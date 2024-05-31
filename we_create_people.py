@@ -141,6 +141,5 @@ def main():
         file_operations.render_template(TEMPLATE_PATH, output_path, context)
 
 
-# Блок if __name__ == '__main__'
 if __name__ == '__main__':
     main()
