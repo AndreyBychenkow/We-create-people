@@ -5,13 +5,11 @@ from faker import Faker
 
 import file_operations
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+TEMPLATE_PATH = os.path.join(CURRENT_DIR, "output", "svg", "charsheet.svg")
+OUTPUT_DIR = os.path.join(CURRENT_DIR, "character cards")
 
-template_path = os.path.join(current_dir, "output", "svg", "charsheet.svg")
-
-output_dir = os.path.join(current_dir, "character cards")
-
-skills = [
+SKILLS = [
     "Стремительный прыжок",
     "Электрический выстрел",
     "Ледяной удар",
@@ -22,7 +20,7 @@ skills = [
     "Огненный заряд"
 ]
 
-letters_mapping = {
+LETTERS_MAPPING = {
     'а': 'а͠',
     'б': 'б̋',
     'в': 'в͒͠',
@@ -134,15 +132,15 @@ def generate_character_context(runic_skills, fake):
 
 def main():
     fake = Faker("ru_RU")
-    runic_skills = generate_runic_skills(skills, letters_mapping)
+    runic_skills = generate_runic_skills(SKILLS, LETTERS_MAPPING)
 
     for i in range(10):
         context = generate_character_context(runic_skills, fake)
-
         output_filename = f"filled_character_card_{i + 1}.svg"
-        output_path = os.path.join(output_dir, output_filename)
-        file_operations.render_template(template_path, output_path, context)
+        output_path = os.path.join(OUTPUT_DIR, output_filename)
+        file_operations.render_template(TEMPLATE_PATH, output_path, context)
 
 
+# Блок if __name__ == '__main__'
 if __name__ == '__main__':
     main()
